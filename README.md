@@ -30,7 +30,7 @@
 
 ![dashboard_slide](images/select_features.png)
 
-## Decision Tree Model
+## Decision Tree Model (Accuracy 0.8077)
 ```Python
 # Create and score a decision tree classifier
 from sklearn import tree
@@ -41,9 +41,9 @@ clf.score(X_test, y_test)
 tree.plot_tree(clf);
 ```
 
-![dashboard_slide](images/decisiontree.png)
+![dashboard_slide](images/decision_tree.png)
 
-## Random Forest Model
+## Random Forest Model (Accuracy 0.8586)
 ```Python
 from sklearn.ensemble import RandomForestClassifier
 
@@ -63,7 +63,7 @@ tree.plot_tree(rf.estimators_[0],
 
 ![dashboard_slide](images/rf_individualtree.png)
 
-## K-Nearest Neighbors Classifier
+## K-Nearest Neighbors Classifier (Accuracy 0.82)
 ```Python
 from sklearn.neighbors import KNeighborsClassifier
 
@@ -98,7 +98,7 @@ print('k=9 Test Acc: %.3f' % knn.score(X_test_scaled, y_test))
 ![dashboard_slide](images/knn_model.png)
 ![dashboard_slide](images/knn_matrix.png)
 
-## Support Vector Machine  Model
+## Support Vector Classification Model (Accuracy 0.7984)
 ```Python
 # Create the SVC Model
 from sklearn.svm import SVC
@@ -113,8 +113,20 @@ grid = GridSearchCV(model, param_grid, verbose=3)
 grid.fit(X_train_scaled, y_train)
 
 ```
-## Deep Learning  Model
+## Deep Learning - Keras Model (Accuracy 0.868)
+```Python
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 
-![dashboard_slide](images/map.png)
+model = Sequential()
+model.add(Dense(units=100, activation='relu', input_dim=7))
+model.add(Dense(units=100, activation='relu'))
+model.add(Dense(units=2, activation='softmax'))
 
-* Published Story Link: https://public.tableau.com/profile/oleg2035#!/vizhome/City_Bike_Analytics_16037248207960/Story
+# Compile the model
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+```
+![dashboard_slide](images/keras_output.png)
